@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V. Berrette — Sociologue & Consultante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-soft: #4a4640;
+    --ink-muted: #8a8480;
+    --paper: #faf8f4;
+    --paper-warm: #f2ede5;
+    --accent: #8b4513;
+    --accent-light: #c8956c;
+    --border: rgba(26,24,20,0.12);
+    --border-strong: rgba(26,24,20,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* LANG TOGGLE */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.75rem 2.5rem;
+    background: var(--paper);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .lang-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border: 0.5px solid var(--border-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn:first-child { border-right: none; border-radius: 2px 0 0 2px; }
+  .lang-btn:last-child  { border-radius: 0 2px 2px 0; }
+  .lang-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 42px; left: 0; right: 0;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 2.5rem;
+    background: var(--paper);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 10rem 2.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(139,69,19,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 70%, rgba(200,149,108,0.05) 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  .hero-rule {
+    position: absolute;
+    top: 50%; left: 55%;
+    width: 0.5px;
+    height: 55%;
+    background: linear-gradient(to bottom, transparent, var(--border-strong), transparent);
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 0.5px;
+    background: var(--accent-light);
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    max-width: 460px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--ink);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-cta:hover { color: var(--accent); border-color: var(--accent); }
+  .hero-cta .arrow { font-size: 14px; transition: transform 0.2s; }
+  .hero-cta:hover .arrow { transform: translateX(4px); }
+
+  .hero-stats {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 4rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-end;
+  }
+
+  .stat-item {
+    text-align: right;
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    min-width: 2rem;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+
+  h2 em { font-style: italic; color: var(--accent); }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text p strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .about-aside {
+    padding-top: 0.5rem;
+  }
+
+  .credential-block {
+    border-left: 0.5px solid var(--border-strong);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .credential-year {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .credential-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+  }
+
+  .credential-place {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  /* EXPERTISE */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 0.5px solid var(--border);
+  }
+
+  .expertise-card {
+    padding: 2.2rem 1.8rem;
+    border-right: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.25s;
+  }
+
+  .expertise-card:nth-child(3n) { border-right: none; }
+  .expertise-card:nth-last-child(-n+3) { border-bottom: none; }
+
+  .expertise-card:hover { background: var(--paper-warm); }
+
+  .expertise-icon {
+    font-size: 22px;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .expertise-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.7rem;
+    line-height: 1.25;
+  }
+
+  .expertise-desc {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: 5rem 1fr auto;
+    gap: 1.5rem 2rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .pub-item:hover { background: var(--paper-warm); padding-left: 0.5rem; }
+
+  .pub-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-detail {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  .pub-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border: 0.5px solid var(--border-strong);
+    color: var(--ink-soft);
+    white-space: nowrap;
+    height: fit-content;
+    margin-top: 0.2rem;
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .contact-info {
+    margin-bottom: 2rem;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 14px;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    min-width: 5rem;
+  }
+
+  .contact-value { color: var(--ink-soft); }
+  .contact-value a { color: var(--accent); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.4rem;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 0.5px solid var(--border-strong);
+    padding: 0.5rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input:focus, textarea:focus { border-bottom-color: var(--accent); }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  .submit-btn {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border: none;
+    padding: 0.9rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+  }
+
+  footer span:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* DIVIDER */
+  .full-rule {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 0 2.5rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav, .lang-bar { padding: 0.75rem 1.2rem; }
+    header { padding: 8rem 1.2rem 5rem; }
+    section { padding: 4rem 1.2rem; }
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .expertise-card { border-right: none; }
+    .hero-stats { display: none; }
+    h1 { font-size: 2.8rem; }
+    .pub-item { grid-template-columns: 3.5rem 1fr; }
+    .pub-tag { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Valérie Berrette</a>
+  <ul class="nav-links">
+    <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+    <li><a href="#expertise" data-fr="Expertise" data-en="Expertise">Expertise</a></li>
+    <li><a href="#publications" data-fr="Publications" data-en="Publications">Publications</a></li>
+    <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-rule"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-fr="Sociologue — Consultante — PhD" data-en="Sociologist — Consultant — PhD">
+      Sociologue — Consultante — PhD
+    </p>
+    <h1 data-fr="Comprendre les<br>organisations <em>de l'intérieur</em>" data-en="Understanding<br>organizations <em>from within</em>">
+      Comprendre les<br>organisations <em>de l'intérieur</em>
+    </h1>
+    <p class="hero-sub" data-fr="Vingt ans d'expertise en sociologie du travail, des cultures organisationnelles et des dynamiques générationnelles — au service des entreprises et institutions." data-en="Twenty years of expertise in workplace sociology, organizational culture, and generational dynamics — serving companies and institutions.">
+      Vingt ans d'expertise en sociologie du travail, des cultures organisationnelles et des dynamiques générationnelles — au service des entreprises et institutions.
+    </p>
+    <a href="#contact" class="hero-cta">
+      <span data-fr="Prendre contact" data-en="Get in touch">Prendre contact</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">20+</div>
+      <div class="stat-label" data-fr="Années d'expérience" data-en="Years of experience">Années d'expérience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">PhD</div>
+      <div class="stat-label" data-fr="Sociologie" data-en="Sociology">Sociologie</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">FR/US</div>
+      <div class="stat-label" data-fr="Contextes binationaux" data-en="Binational expertise">Contextes binationaux</div>
+    </div>
+  </div>
+</header>
+
+<hr class="full-rule">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header fade-in">
+    <span class="section-num">01</span>
+    <span class="section-line"></span>
+    <h2 data-fr="À <em>propos</em>" data-en="<em>About</em>">À <em>propos</em></h2>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p data-fr="Sociologue de formation et de vocation, j'ai passé deux décennies à étudier ce qui se joue réellement dans les organisations : comment les individus habitent leur travail, comment les cultures se construisent et se transmettent, comment les générations négocient leurs différences." data-en="A sociologist by training and vocation, I have spent two decades studying what really happens inside organizations: how individuals inhabit their work, how cultures are built and transmitted, how generations negotiate their differences.">
+        Sociologue de formation et de vocation, j'ai passé deux décennies à étudier ce qui se joue réellement dans les organisations : comment les individus habitent leur travail, comment les cultures se construisent et se transmettent, comment les générations négocient leurs différences.
+      </p>
+      <p data-fr="Mon parcours s'est construit en France, entre la recherche académique et le conseil aux entreprises. Une expérience américaine récente est venue enrichir ce regard d'une perspective comparative sur les modèles du travail contemporains." data-en="My career was built in France, between academic research and corporate consulting. A recent American experience has enriched this perspective with a comparative lens on contemporary work models.">
+        Mon parcours s'est construit en France, entre la recherche académique et le conseil aux entreprises. Une expérience américaine récente est venue enrichir ce regard d'une perspective comparative sur les modèles du travail contemporains.
+      </p>
+      <p data-fr="Je suis actuellement basée à Norfolk, Virginie, où j'observe au quotidien la sociologie d'une région marquée par la présence militaire, les mutations industrielles et les tensions propres à la société américaine contemporaine." data-en="I am currently based in Norfolk, Virginia, where I observe daily the sociology of a region shaped by military presence, industrial transformation, and the tensions specific to contemporary American society.">
+        Je suis actuellement basée à Norfolk, Virginie, où j'observe au quotidien la sociologie d'une région marquée par la présence militaire, les mutations industrielles et les tensions propres à la société américaine contemporaine.
+      </p>
+    </div>
+
+    <div class="about-aside fade-in">
+      <div class="credential-block">
+        <div class="credential-year" data-fr="Doctorat" data-en="Doctorate">Doctorat</div>
+        <div class="credential-title" data-fr="PhD en Sociologie" data-en="PhD in Sociology">PhD en Sociologie</div>
+        <div class="credential-place" data-fr="Spécialisation : travail et organisations" data-en="Specialization: work and organizations">Spécialisation : travail et organisations</div>
+      </div>
+      <div class="credential-block">
+        <div class="credential-year" data-fr="Expérience" data-en="Experience">Expérience</div>
+        <div class="credential-title" data-fr="Conseil & Recherche appliquée" data-en="Consulting & Applied Research">Conseil & Recherche appliquée</div>
+        <div class="credential-place" data-fr="Grandes entreprises françaises et internationales" data-en="Major French and international corporations">Grandes entreprises françaises et internationales</div>
+      </div>
+      <div class="credential-block">
+        <div class="credential-year" data-fr="Langues" data-en="Languages">Langues</div>
+        <div class="credential-title" data-fr="Français — Anglais" data-en="French — English">Français — Anglais</div>
+        <div class="credential-place" data-fr="Interventions dans les deux langues" data-en="Delivers in both languages">Interventions dans les deux langues</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-header fade-in">
+    <span class="section-num">02</span>
+    <span class="section-line"></span>
+    <h2 data-fr="Domaines d'<em>expertise</em>" data-en="Areas of <em>expertise</em>">Domaines d'<em>expertise</em></h2>
+  </div>
+
+  <div class="expertise-grid fade-in">
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Sociologie du travail" data-en="Sociology of Work">Sociologie du travail</div>
+      <p class="expertise-desc" data-fr="Analyse des conditions de travail, du sens attribué aux métiers, de l'engagement et du désengagement professionnel." data-en="Analysis of working conditions, the meaning attributed to occupations, and professional engagement and disengagement.">
+        Analyse des conditions de travail, du sens attribué aux métiers, de l'engagement et du désengagement professionnel.
+      </p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Cultures organisationnelles" data-en="Organizational Culture">Cultures organisationnelles</div>
+      <p class="expertise-desc" data-fr="Diagnostic culturel, accompagnement des transformations, compréhension des résistances et des leviers d'adhésion." data-en="Cultural diagnosis, change management support, understanding resistance factors and drivers of organizational buy-in.">
+        Diagnostic culturel, accompagnement des transformations, compréhension des résistances et des leviers d'adhésion.
+      </p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Contextes militaires" data-en="Military Contexts">Contextes militaires</div>
+      <p class="expertise-desc" data-fr="Expertise spécifique sur les organisations à forte hiérarchie, les identités professionnelles militaires et les transitions vers le secteur civil." data-en="Specific expertise in highly hierarchical organizations, military professional identities, and transitions to the civilian sector.">
+        Expertise spécifique sur les organisations à forte hiérarchie, les identités professionnelles militaires et les transitions vers le secteur civil.
+      </p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Dynamiques générationnelles" data-en="Generational Dynamics">Dynamiques générationnelles</div>
+      <p class="expertise-desc" data-fr="Analyse des cohabitations intergénérationnelles, des transmissions de savoirs et des nouvelles attentes au travail." data-en="Analysis of intergenerational cohabitation, knowledge transfer, and new workplace expectations.">
+        Analyse des cohabitations intergénérationnelles, des transmissions de savoirs et des nouvelles attentes au travail.
+      </p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Analyse comparative FR/US" data-en="FR/US Comparative Analysis">Analyse comparative FR/US</div>
+      <p class="expertise-desc" data-fr="Analyse des similitudes et divergences entre les modèles du travail français et américains : organisation, management, rapport à l'emploi et aux institutions." data-en="Analysis of similarities and differences between French and American work models: organization, management, and relationships to employment and institutions.">
+        Analyse des similitudes et divergences entre les modèles du travail français et américains : organisation, management, rapport à l'emploi et aux institutions.
+      </p>
+    </div>
+    <div class="expertise-card">
+      <span class="expertise-icon">◈</span>
+      <div class="expertise-title" data-fr="Méthodes & Données" data-en="Methods & Data">Méthodes & Données</div>
+      <p class="expertise-desc" data-fr="Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python et Tableau pour l'analyse de données sociales." data-en="Proficiency in qualitative and quantitative methods, including SQL, Python, and Tableau for social data analysis.">
+        Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python et Tableau pour l'analyse de données sociales.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <span class="section-line"></span>
+    <h2 data-fr="<em>Publications</em> & travaux" data-en="<em>Publications</em> & work"><em>Publications</em> & travaux</h2>
+  </div>
+
+  <!-- SOUS-SECTION : PUBLICATIONS -->
+  <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:var(--ink-muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:2rem;" class="fade-in" data-fr="Publications" data-en="Publications">Publications</h3>
+
+  <div class="pub-list fade-in">
+
+    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+      <div>
+        <div class="pub-title" data-fr="Relations professionnelles cadres/non-cadres : un « modèle dans les armées »" data-en="Officer/non-officer professional relations: a 'model within the armed forces'">Relations professionnelles cadres/non-cadres : un « modèle dans les armées »</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="IRSEM — Les caractéristiques de la profession militaire conduisent l'institution à porter un regard attentif à la place et à l'évolution des relations professionnelles entre ses membres. La cohésion du groupe et un commandement capable d'entraîner reposent en grande partie sur la qualité de ces relations." data-en="IRSEM — The characteristics of the military profession lead the institution to pay close attention to professional relations among its members. Group cohesion and effective leadership depend largely on the quality of these relations.">IRSEM — Les caractéristiques de la profession militaire conduisent l'institution à porter un regard attentif à la place et à l'évolution des relations professionnelles entre ses membres. La cohésion du groupe et un commandement capable d'entraîner reposent en grande partie sur la qualité de ces relations.</div>
+      </div>
+      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
+    </div>
+
+    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+      <div>
+        <div class="pub-title" data-fr="Les jeunes soldats de l'armée de terre : perception du métier et motivations" data-en="Young soldiers in the French Army: occupational perception and motivations">Les jeunes soldats de l'armée de terre : perception du métier et motivations</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="In : Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution à un ouvrage collectif sur les transformations du travail et des identités professionnelles dans les organisations françaises contemporaines." data-en="In: Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution to a collective volume on the transformation of work and professional identities in contemporary French organisations.">In : Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution à un ouvrage collectif sur les transformations du travail et des identités professionnelles dans les organisations françaises contemporaines.</div>
+      </div>
+      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Chapitre" data-en="Chapter">Chapitre</div>
+    </div>
+
+    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+      <div>
+        <div class="pub-title" data-fr="Vers une identité commune aux acteurs de la défense" data-en="Towards a shared identity among defence actors">Vers une identité commune aux acteurs de la défense</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="IRSEM — L'étude identifie les leviers d'une politique de communication qui renforcerait le sentiment d'appartenance à une communauté de la défense, développerait une culture de défense au sein des armées et renforcerait la cohésion interne." data-en="IRSEM — The study identifies levers for a communication policy that would strengthen the sense of belonging to a defence community, develop a defence culture within the armed forces, and reinforce internal cohesion.">IRSEM — L'étude identifie les leviers d'une politique de communication qui renforcerait le sentiment d'appartenance à une communauté de la défense, développerait une culture de défense au sein des armées et renforcerait la cohésion interne.</div>
+      </div>
+      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
+    </div>
+
+    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+      <div>
+        <div class="pub-title" data-fr="L'implantation locale des régiments : l'expérience des régiments anciennement professionnalisés" data-en="Local regimental integration: the experience of formerly professionalised regiments">L'implantation locale des régiments : l'expérience des régiments anciennement professionnalisés</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="IRSEM — Cette étude identifie, décrit et analyse les pratiques sous-tendant l'implantation locale des régiments, afin d'en évaluer les effets au sein de ces structures et de leur environnement. Elle dégage l'expérience des régiments anciennement professionnalisés pour mettre en évidence les enjeux de l'implantation locale pour les forces armées." data-en="IRSEM — This study identifies, describes, and analyses the practices underlying the local integration of regiments, in order to assess their effects within these structures and their environment. It draws on the experience of formerly professionalised regiments to highlight the challenges of local integration for the armed forces.">IRSEM — Cette étude identifie, décrit et analyse les pratiques sous-tendant l'implantation locale des régiments, afin d'en évaluer les effets au sein de ces structures et de leur environnement. Elle dégage l'expérience des régiments anciennement professionnalisés pour mettre en évidence les enjeux de l'implantation locale pour les forces armées.</div>
+      </div>
+      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
+    </div>
+
+    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+      <div>
+        <div class="pub-title" data-fr="Les attentes des jeunes pour un premier emploi" data-en="Young people's expectations for their first job">Les attentes des jeunes pour un premier emploi</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="Sociologie des jeunes générations sur le marché du travail. Publication associée à la conférence dispensée auprès des directeurs de la formation professionnelle suisse (2024)." data-en="Sociology of younger generations in the labour market. Publication linked to the conference delivered to Swiss vocational training directors (2024).">Sociologie des jeunes générations sur le marché du travail. Publication associée à la conférence dispensée auprès des directeurs de la formation professionnelle suisse (2024).</div>
+      </div>
+      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
+    </div>
+
+  </div>
+
+  <!-- SOUS-SECTION : ÉTUDES ET MISSIONS -->
+  <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:var(--ink-muted); letter-spacing:0.08em; text-transform:uppercase; margin:3.5rem 0 2rem;" class="fade-in" data-fr="Études & missions" data-en="Studies & assignments">Études & missions</h3>
+
+  <div class="pub-list fade-in">
+
+    <div class="pub-item">
+      <div class="pub-year">2003–<br>2010</div>
+      <div>
+        <div class="pub-title" data-fr="Études sociologiques au profit du ministère des Armées — PRAGMA Management" data-en="Sociological studies for the French Ministry of Armed Forces — PRAGMA Management">Études sociologiques au profit du ministère des Armées — PRAGMA Management</div>
+        <div class="pub-detail" data-fr="Besoins des familles en OPEX · Relations officiers/non-officiers · Satisfaction des personnels civils et militaires · Identité commune des acteurs de la Défense · Redéploiement des bases militaires (GSBDD) — Félicitations du ministre H. Morin" data-en="Family needs during overseas operations · Officer/non-officer relations · Civil and military personnel satisfaction · Shared Defence identity · Military base redeployment (GSBDD) — Commendation from Minister H. Morin">Besoins des familles en OPEX · Relations officiers/non-officiers · Satisfaction des personnels civils et militaires · Identité commune des acteurs de la Défense · Redéploiement des bases militaires (GSBDD) — Félicitations du ministre H. Morin</div>
+      </div>
+      <div class="pub-tag" data-fr="Défense" data-en="Defence">Défense</div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2004–<br>2007</div>
+      <div>
+        <div class="pub-title" data-fr="Officier de réserve au grade de capitaine — Armée de Terre" data-en="Reserve Officer, rank of Captain — French Army">Officier de réserve au grade de capitaine — Armée de Terre</div>
+        <div class="pub-detail" data-fr="Analyse de contenu des rapports sur le moral (1952 à nos jours) · Encadrement de jeunes volontaires dans le dispositif « un permis de conduire contre une préparation militaire »" data-en="Content analysis of morale reports (1952 to present) · Supervision of young volunteers in the 'driving licence for military training' programme">Analyse de contenu des rapports sur le moral (1952 à nos jours) · Encadrement de jeunes volontaires dans le dispositif « un permis de conduire contre une préparation militaire »</div>
+      </div>
+      <div class="pub-tag" data-fr="Réserve" data-en="Reserve">Réserve</div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">1998–<br>2003</div>
+      <div>
+        <div class="pub-title" data-fr="Chargée d'études sociologiques — Executive Consultants, Rueil-Malmaison" data-en="Sociological Research Officer — Executive Consultants, Rueil-Malmaison">Chargée d'études sociologiques — Executive Consultants, Rueil-Malmaison</div>
+        <div class="pub-detail" data-fr="Couples de militaires : compatibilité vie opérationnelle/vie familiale, féminisation, endogamie militaire, fidélisation · Conditions de vie des EVAT : recrutement et fidélisation · Freins et motivations à servir dans la réserve opérationnelle" data-en="Military couples: balancing operational demands and family life, feminisation, military endogamy, retention · EVAT living conditions: recruitment and retention · Motivations and barriers to serving in the operational reserve">Couples de militaires : compatibilité vie opérationnelle/vie familiale, féminisation, endogamie militaire, fidélisation · Conditions de vie des EVAT : recrutement et fidélisation · Freins et motivations à servir dans la réserve opérationnelle</div>
+      </div>
+      <div class="pub-tag" data-fr="Défense" data-en="Defence">Défense</div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2014–<br>prés.</div>
+      <div>
+        <div class="pub-title" data-fr="Sociologue consultante indépendante — Membre du réseau Anthropik" data-en="Independent Sociologist & Consultant — Anthropik network member">Sociologue consultante indépendante — Membre du réseau Anthropik</div>
+        <div class="pub-detail" data-fr="Recrutement, engagement et fidélisation des talents · Motivation et satisfaction au travail · Attentes des jeunes générations · Transformations du marché du travail" data-en="Talent recruitment, engagement and retention · Work motivation and satisfaction · New generation expectations · Labour market transformation">Recrutement, engagement et fidélisation des talents · Motivation et satisfaction au travail · Attentes des jeunes générations · Transformations du marché du travail</div>
+      </div>
+      <div class="pub-tag" data-fr="Conseil" data-en="Consulting">Conseil</div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2024–<br>prés.</div>
+      <div>
+        <div class="pub-title" data-fr="Conférencière — Directeurs de la formation professionnelle suisse" data-en="Speaker — Swiss Vocational Training Directors">Conférencière — Directeurs de la formation professionnelle suisse</div>
+        <div class="pub-detail" data-fr="Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail" data-en="Youth sociology: expectations and behaviours of new generations in the labour market">Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail</div>
+      </div>
+      <div class="pub-tag" data-fr="Conférence" data-en="Talk">Conférence</div>
+    </div>
+
+  </div>
+
+</section>
+
+<hr class="full-rule">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <span class="section-line"></span>
+    <h2 data-fr="Prendre <em>contact</em>" data-en="Get in <em>touch</em>">Prendre <em>contact</em></h2>
+  </div>
+
+  <div class="contact-wrapper fade-in">
+    <div>
+
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="contact-label" data-fr="Localisation" data-en="Location">Localisation</span>
+          <span class="contact-value" data-fr="Norfolk, Virginie — États-Unis" data-en="Norfolk, Virginia — United States">Norfolk, Virginie — États-Unis</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:valerie.berrette.pro@gmail.com">valerie.berrette.pro@gmail.com</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value"><a href="https://linkedin.com" target="_blank" rel="noopener">linkedin.com/in/votre-profil</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label" data-fr="Langues" data-en="Languages">Langues</span>
+          <span class="contact-value" data-fr="Français, anglais" data-en="French, English">Français, anglais</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label data-fr="Nom" data-en="Name">Nom</label>
+        <input type="text" placeholder="">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="">
+      </div>
+      <div class="form-group">
+        <label data-fr="Objet" data-en="Subject">Objet</label>
+        <input type="text" placeholder="">
+      </div>
+      <div class="form-group">
+        <label data-fr="Message" data-en="Message">Message</label>
+        <textarea rows="4"></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">
+        <span data-fr="Envoyer" data-en="Send">Envoyer</span> →
+      </button>
+      <p id="form-note" style="display:none; margin-top:1rem; font-size:13px; color:var(--accent);" data-fr="Merci. Pour activer l'envoi réel, connectez ce formulaire à Formspree ou EmailJS." data-en="Thank you. To enable real sending, connect this form to Formspree or EmailJS.">
+        Merci. Pour activer l'envoi réel, connectez ce formulaire à Formspree ou EmailJS.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Valérie Berrette</span>
+  <span data-fr="Sociologue & Consultante — Norfolk, VA" data-en="Sociologist & Consultant — Norfolk, VA">Sociologue & Consultante — Norfolk, VA</span>
+  <span>© 2026</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // LANG SYSTEM
+  let currentLang = 'fr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      if (b.textContent === lang.toUpperCase()) b.classList.add('active');
+    });
+    document.querySelectorAll('[data-fr]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt) el.innerHTML = txt;
+    });
+    document.documentElement.lang = lang;
+  }
+
+  // SCROLL FADE-IN
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // FORM
+  function handleSubmit() {
+    document.getElementById('form-note').style.display = 'block';
+  }
+</script>
+</body>
+</html>
