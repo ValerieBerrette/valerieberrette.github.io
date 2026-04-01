@@ -229,7 +229,159 @@
     color: var(--ink-muted);
   }
 
-  /* SECTIONS */
+  /* HERO IMAGE */
+  .hero-image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 42%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--paper) 0%, transparent 40%),
+                linear-gradient(to top, var(--paper) 0%, transparent 30%);
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(20%) contrast(0.95);
+    opacity: 0.75;
+  }
+
+  @media (max-width: 768px) {
+    .hero-image { display: none; }
+  }
+
+  /* CARROUSEL */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border: 0.5px solid var(--border);
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    padding: 3rem 3.5rem;
+    box-sizing: border-box;
+    background: var(--paper);
+  }
+
+  .carousel-slide--accent {
+    background: var(--ink);
+  }
+
+  .carousel-slide--accent .slide-eyebrow,
+  .carousel-slide--accent .slide-title,
+  .carousel-slide--accent .slide-body {
+    color: var(--paper) !important;
+  }
+
+  .slide-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .slide-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .slide-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  .slide-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 680px;
+  }
+
+  .slide-list li {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ink-soft);
+    padding-left: 1.2rem;
+    border-left: 0.5px solid var(--accent-light);
+    line-height: 1.6;
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.2rem;
+    border-top: 0.5px solid var(--border);
+    background: var(--paper-warm);
+  }
+
+  .carousel-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    background: transparent;
+    border: 0.5px solid var(--border-strong);
+    color: var(--ink-soft);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .carousel-dot.active {
+    background: var(--accent);
+  }
+
+  /* CARROUSEL FIN */
   section {
     padding: 6rem 2.5rem;
     max-width: 1100px;
@@ -578,6 +730,7 @@
     <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
     <li><a href="#expertise" data-fr="Expertise" data-en="Expertise">Expertise</a></li>
     <li><a href="#publications" data-fr="Publications" data-en="Publications">Publications</a></li>
+    <li><a href="#insights" data-fr="Insights" data-en="Insights">Insights</a></li>
     <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
   </ul>
 </nav>
@@ -601,6 +754,10 @@
       <span data-fr="Prendre contact" data-en="Get in touch">Prendre contact</span>
       <span class="arrow">→</span>
     </a>
+  </div>
+
+  <div class="hero-image">
+    <img src="photo.jpg" alt="Valérie Berrette — Sociologue & Consultante" />
   </div>
 
   <div class="hero-stats">
@@ -697,8 +854,8 @@
     <div class="expertise-card">
       <span class="expertise-icon">◈</span>
       <div class="expertise-title" data-fr="Dynamiques générationnelles" data-en="Generational Dynamics">Dynamiques générationnelles</div>
-      <p class="expertise-desc" data-fr="Analyse des cohabitations intergénérationnelles, des transmissions de savoirs et des nouvelles attentes au travail." data-en="Analysis of intergenerational cohabitation, knowledge transfer, and new workplace expectations.">
-        Analyse des cohabitations intergénérationnelles, des transmissions de savoirs et des nouvelles attentes au travail.
+      <p class="expertise-desc" data-fr="Comprendre les attentes et comportements des nouvelles générations sur le marché du travail : rapport au sens, à l'engagement et à l'équilibre vie pro/perso." data-en="Understanding the expectations and behaviours of new generations in the labour market: relationship to meaning, engagement, and work-life balance.">
+        Comprendre les attentes et comportements des nouvelles générations sur le marché du travail : rapport au sens, à l'engagement et à l'équilibre vie pro/perso.
       </p>
     </div>
     <div class="expertise-card">
@@ -711,8 +868,8 @@
     <div class="expertise-card">
       <span class="expertise-icon">◈</span>
       <div class="expertise-title" data-fr="Méthodes & Données" data-en="Methods & Data">Méthodes & Données</div>
-      <p class="expertise-desc" data-fr="Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python et Tableau pour l'analyse de données sociales." data-en="Proficiency in qualitative and quantitative methods, including SQL, Python, and Tableau for social data analysis.">
-        Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python et Tableau pour l'analyse de données sociales.
+      <p class="expertise-desc" data-fr="Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python, R et Tableau pour l'analyse de données sociales." data-en="Proficiency in qualitative and quantitative methods, including SQL, Python, R, and Tableau for social data analysis.">
+        Maîtrise des méthodes qualitatives et quantitatives, incluant SQL, Python, R et Tableau pour l'analyse de données sociales.
       </p>
     </div>
   </div>
@@ -741,10 +898,11 @@
       <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
     </div>
 
-    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
+    <div class="pub-item" style="grid-template-columns:80px 1fr auto; gap:1.5rem 2rem; align-items:start;">
+      <img src="harmattan.png" alt="Changement technique, changement social — L'Harmattan" style="width:80px; border:0.5px solid var(--border); display:block;">
       <div>
         <div class="pub-title" data-fr="Les jeunes soldats de l'armée de terre : perception du métier et motivations" data-en="Young soldiers in the French Army: occupational perception and motivations">Les jeunes soldats de l'armée de terre : perception du métier et motivations</div>
-        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="In : Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution à un ouvrage collectif sur les transformations du travail et des identités professionnelles dans les organisations françaises contemporaines." data-en="In: Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution to a collective volume on the transformation of work and professional identities in contemporary French organisations.">In : Changement technique, changement social — L'Harmattan, pp. 157–172. Contribution à un ouvrage collectif sur les transformations du travail et des identités professionnelles dans les organisations françaises contemporaines.</div>
+        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="Chapitre 9, pp. 157–172 — in : Changement technique, changement social, L'Harmattan, coll. Dossiers Sciences Humaines et Sociales, Série Séminaires RESEO. Dir. Roux-Morin Laetitia &amp; Ullmann Charlotte. Avec Zineb Berrak, José Calderon, Caroline Datchary, Federico Ibarguen Ruiz, Alexandra Jonsson, Sarah Machat, Pierre Mazet, Marwan Mohammed, Anne Remillieux." data-en="Chapter 9, pp. 157–172 — in: Changement technique, changement social, L'Harmattan, coll. Dossiers Sciences Humaines et Sociales, Série Séminaires RESEO. Ed. Roux-Morin Laetitia &amp; Ullmann Charlotte.">Chapitre 9, pp. 157–172 — in : Changement technique, changement social, L'Harmattan, coll. Dossiers Sciences Humaines et Sociales, Série Séminaires RESEO. Dir. Roux-Morin Laetitia &amp; Ullmann Charlotte.</div>
       </div>
       <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Chapitre" data-en="Chapter">Chapitre</div>
     </div>
@@ -761,14 +919,6 @@
       <div>
         <div class="pub-title" data-fr="L'implantation locale des régiments : l'expérience des régiments anciennement professionnalisés" data-en="Local regimental integration: the experience of formerly professionalised regiments">L'implantation locale des régiments : l'expérience des régiments anciennement professionnalisés</div>
         <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="IRSEM — Cette étude identifie, décrit et analyse les pratiques sous-tendant l'implantation locale des régiments, afin d'en évaluer les effets au sein de ces structures et de leur environnement. Elle dégage l'expérience des régiments anciennement professionnalisés pour mettre en évidence les enjeux de l'implantation locale pour les forces armées." data-en="IRSEM — This study identifies, describes, and analyses the practices underlying the local integration of regiments, in order to assess their effects within these structures and their environment. It draws on the experience of formerly professionalised regiments to highlight the challenges of local integration for the armed forces.">IRSEM — Cette étude identifie, décrit et analyse les pratiques sous-tendant l'implantation locale des régiments, afin d'en évaluer les effets au sein de ces structures et de leur environnement. Elle dégage l'expérience des régiments anciennement professionnalisés pour mettre en évidence les enjeux de l'implantation locale pour les forces armées.</div>
-      </div>
-      <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
-    </div>
-
-    <div class="pub-item" style="grid-template-columns:1fr auto; gap:1rem;">
-      <div>
-        <div class="pub-title" data-fr="Les attentes des jeunes pour un premier emploi" data-en="Young people's expectations for their first job">Les attentes des jeunes pour un premier emploi</div>
-        <div class="pub-detail" style="margin:0.5rem 0; font-style:normal; color:var(--ink-soft); font-size:14px;" data-fr="Sociologie des jeunes générations sur le marché du travail. Publication associée à la conférence dispensée auprès des directeurs de la formation professionnelle suisse (2024)." data-en="Sociology of younger generations in the labour market. Publication linked to the conference delivered to Swiss vocational training directors (2024).">Sociologie des jeunes générations sur le marché du travail. Publication associée à la conférence dispensée auprès des directeurs de la formation professionnelle suisse (2024).</div>
       </div>
       <div class="pub-tag" style="margin-top:0.3rem;" data-fr="Publication" data-en="Publication">Publication</div>
     </div>
@@ -820,7 +970,7 @@
       <div class="pub-year">2024–<br>prés.</div>
       <div>
         <div class="pub-title" data-fr="Conférencière — Directeurs de la formation professionnelle suisse" data-en="Speaker — Swiss Vocational Training Directors">Conférencière — Directeurs de la formation professionnelle suisse</div>
-        <div class="pub-detail" data-fr="Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail" data-en="Youth sociology: expectations and behaviours of new generations in the labour market">Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail</div>
+        <div class="pub-detail" data-fr="« Les attentes des jeunes pour un premier emploi » — Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail" data-en="'Young people's expectations for their first job' — Youth sociology: expectations and behaviours of new generations in the labour market">« Les attentes des jeunes pour un premier emploi » — Sociologie des jeunes : attentes et comportements des nouvelles générations sur le marché du travail</div>
       </div>
       <div class="pub-tag" data-fr="Conférence" data-en="Talk">Conférence</div>
     </div>
@@ -831,10 +981,83 @@
 
 <hr class="full-rule">
 
+<!-- CARROUSEL -->
+<section id="insights">
+  <div class="section-header fade-in">
+    <span class="section-num">04</span>
+    <span class="section-line"></span>
+    <h2 data-fr="<em>Insights</em> & réflexions" data-en="<em>Insights</em> & reflections"><em>Insights</em> & réflexions</h2>
+  </div>
+
+  <div class="carousel-wrapper fade-in">
+    <div class="carousel-track" id="carouselTrack">
+
+      <div class="carousel-slide">
+        <div class="slide-eyebrow" data-fr="Question stratégique" data-en="Strategic question">Question stratégique</div>
+        <div class="slide-title" data-fr="Décider sans sociologie, est-ce vraiment stratégique ?" data-en="Deciding without sociology — is it really strategic?">Décider sans sociologie, est-ce vraiment stratégique ?</div>
+        <p class="slide-body" data-fr="Les décisions stratégiques ne sont rien sans une vraie compréhension du terrain. La sociologie n'est pas un luxe académique — c'est un outil opérationnel." data-en="Strategic decisions are nothing without a genuine understanding of the field. Sociology is not an academic luxury — it is an operational tool.">Les décisions stratégiques ne sont rien sans une vraie compréhension du terrain. La sociologie n'est pas un luxe académique — c'est un outil opérationnel.</p>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-eyebrow" data-fr="Pourquoi intégrer la sociologie ?" data-en="Why integrate sociology?">Pourquoi intégrer la sociologie ?</div>
+        <div class="slide-title" data-fr="Comprendre pour décider" data-en="Understand to decide">Comprendre pour décider</div>
+        <ul class="slide-list">
+          <li data-fr="Comprendre les dynamiques sociales : culture, motivations, résistances" data-en="Understand social dynamics: culture, motivations, resistance">Comprendre les dynamiques sociales : culture, motivations, résistances</li>
+          <li data-fr="Anticiper les réactions des équipes face aux décisions" data-en="Anticipate team reactions to decisions">Anticiper les réactions des équipes face aux décisions</li>
+          <li data-fr="Éviter les biais en s'appuyant sur les réalités du terrain" data-en="Avoid bias by grounding decisions in field realities">Éviter les biais en s'appuyant sur les réalités du terrain</li>
+          <li data-fr="Favoriser l'adhésion et limiter les résistances" data-en="Foster buy-in and limit resistance">Favoriser l'adhésion et limiter les résistances</li>
+        </ul>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-eyebrow" data-fr="Méthodes" data-en="Methods">Méthodes</div>
+        <div class="slide-title" data-fr="Analyse sociologique pour l'aide à la décision" data-en="Sociological analysis for decision support">Analyse sociologique pour l'aide à la décision</div>
+        <ul class="slide-list">
+          <li data-fr="Observation des interactions : dynamiques de groupes" data-en="Observation of interactions: group dynamics">Observation des interactions : dynamiques de groupes</li>
+          <li data-fr="Entretiens & enquêtes : perceptions et résistances" data-en="Interviews & surveys: perceptions and resistance">Entretiens & enquêtes : perceptions et résistances</li>
+          <li data-fr="Analyse des réseaux : sources de pouvoir et de contrôle" data-en="Network analysis: sources of power and control">Analyse des réseaux : sources de pouvoir et de contrôle</li>
+          <li data-fr="Cartographie des incertitudes : révéler les zones d'incertitude et les stratégies des acteurs" data-en="Uncertainty mapping: reveal zones of uncertainty and actor strategies">Cartographie des incertitudes : révéler les zones d'incertitude et les stratégies des acteurs</li>
+        </ul>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-eyebrow" data-fr="Cas d'école" data-en="Case study">Cas d'école</div>
+        <div class="slide-title" data-fr="La restructuration de l'armée française (1996–2002)" data-en="The restructuring of the French Army (1996–2002)">La restructuration de l'armée française (1996–2002)</div>
+        <p class="slide-body" data-fr="Abandon de la conscription pour une armée professionnelle. 201 498 appelés remplacés par environ 68 623 professionnels — ratio 3 pour 1. Un changement de paradigme qui a nécessité une adaptation profonde des compétences et de l'organisation." data-en="Transition from conscription to a professional army. 201,498 conscripts replaced by approximately 68,623 professionals — a 3 to 1 ratio. A paradigm shift requiring deep adaptation of skills and organisation.">Abandon de la conscription pour une armée professionnelle. 201 498 appelés remplacés par environ 68 623 professionnels — ratio 3 pour 1. Un changement de paradigme qui a nécessité une adaptation profonde des compétences et de l'organisation.</p>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-eyebrow" data-fr="Sciences sociales" data-en="Social sciences">Sciences sociales</div>
+        <div class="slide-title" data-fr="Au service de la transition" data-en="In service of transition">Au service de la transition</div>
+        <ul class="slide-list">
+          <li data-fr="Recrutement : nouvelles stratégies de sélection" data-en="Recruitment: new selection strategies">Recrutement : nouvelles stratégies de sélection</li>
+          <li data-fr="Fidélisation : politiques RH face à la concurrence du secteur privé" data-en="Retention: HR policies facing private sector competition">Fidélisation : politiques RH face à la concurrence du secteur privé</li>
+          <li data-fr="Reconversion : accompagnement à la vie après l'armée" data-en="Transition: support for life after the military">Reconversion : accompagnement à la vie après l'armée</li>
+        </ul>
+      </div>
+
+      <div class="carousel-slide carousel-slide--accent">
+        <div class="slide-eyebrow" data-fr="Conclusion" data-en="Conclusion">Conclusion</div>
+        <div class="slide-title" data-fr="La sociologie : stratégie gagnante pour transformer, engager et performer" data-en="Sociology: a winning strategy to transform, engage and perform">La sociologie : stratégie gagnante pour transformer, engager et performer</div>
+        <p class="slide-body" data-fr="Les outils sociologiques ne sont pas réservés aux chercheurs. Ils sont les clés du succès dans toute transformation organisationnelle." data-en="Sociological tools are not reserved for researchers. They are the keys to success in any organisational transformation.">Les outils sociologiques ne sont pas réservés aux chercheurs. Ils sont les clés du succès dans toute transformation organisationnelle.</p>
+      </div>
+
+    </div>
+
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevBtn" onclick="moveCarousel(-1)">←</button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="nextBtn" onclick="moveCarousel(1)">→</button>
+    </div>
+  </div>
+</section>
+
+<hr class="full-rule">
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header fade-in">
-    <span class="section-num">04</span>
+    <span class="section-num">05</span>
     <span class="section-line"></span>
     <h2 data-fr="Prendre <em>contact</em>" data-en="Get in <em>touch</em>">Prendre <em>contact</em></h2>
   </div>
@@ -849,7 +1072,7 @@
         </div>
         <div class="contact-row">
           <span class="contact-label">Email</span>
-          <span class="contact-value"><a href="/cdn-cgi/l/email-protection#6513040900170c004b07001717001111004b15170a250208040c094b060a08"><span class="__cf_email__" data-cfemail="4b3d2a272e39222e65292e39392e3f3f2e653b39240b2c262a222765282426">[email&#160;protected]</span></a></span>
+          <span class="contact-value"><a href="/cdn-cgi/l/email-protection#a7d1c6cbc2d5cec289c5c2d5d5c2d3d3c289d7d5c8e7c0cac6cecb89c4c8ca"><span class="__cf_email__" data-cfemail="a0d6c1ccc5d2c9c58ec2c5d2d2c5d4d4c58ed0d2cfe0c7cdc1c9cc8ec3cfcd">[email&#160;protected]</span></a></span>
         </div>
         <div class="contact-row">
           <span class="contact-label">LinkedIn</span>
@@ -896,7 +1119,7 @@
   <span>© 2026</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // LANG SYSTEM
   let currentLang = 'fr';
 
@@ -911,6 +1134,31 @@
       if (txt) el.innerHTML = txt;
     });
     document.documentElement.lang = lang;
+  }
+
+  // CARROUSEL
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(n) {
+    currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  function moveCarousel(dir) {
+    goToSlide(currentSlide + dir);
   }
 
   // SCROLL FADE-IN
