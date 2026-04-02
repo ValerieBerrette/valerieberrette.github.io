@@ -202,40 +202,76 @@
   .hero-cta:hover .arrow { transform: translateX(4px); }
 
   .hero-stats {
-    position: absolute;
-    right: 2.5rem;
-    bottom: 4rem;
+    position: relative;
     z-index: 1;
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--border);
+    background: transparent;
+    width: 100%;
+    max-width: 780px;
   }
 
   .stat-item {
-    text-align: right;
+    padding: 0 2.5rem;
+    text-align: left;
   }
+
+  .stat-item:first-child { padding-left: 0; }
+
+  .stat-divider {
+    width: 0.5px;
+    height: 2rem;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
   .stat-number {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 300;
-    color: var(--paper);
+    color: var(--accent);
     line-height: 1;
+    margin-bottom: 0.3rem;
   }
+
   .stat-label {
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 10px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.75);
+    color: var(--ink-muted);
   }
-  .hero-stats {
-    background: rgba(26,24,20,0.55);
-    padding: 1.5rem 1.2rem;
-    backdrop-filter: blur(4px);
+
+  @media (max-width: 768px) {
+    .hero-stats {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      background: transparent;
+      margin-top: 3rem;
+    }
+    .stat-item {
+      padding: 0.5rem 1.2rem 0.5rem 0;
+    }
+    .stat-item:first-child { padding-left: 0; }
+    .stat-divider { display: none; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+    h1 { font-size: 2.6rem; }
+    nav, .lang-bar { padding: 0.75rem 1.2rem; }
+    header { padding: 8rem 1.2rem 4rem; }
+    section { padding: 4rem 1.2rem; }
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .expertise-card { border-right: none; }
+    .pub-item { grid-template-columns: 3.5rem 1fr; }
+    .pub-tag { display: none; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 
   
-
   /* CARROUSEL */
   .carousel-wrapper {
     position: relative;
