@@ -881,8 +881,31 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    nav, .lang-bar { padding: 0.75rem 1.2rem; }
-    header { padding: 8rem 1.2rem 5rem; }
+    /* Évite le chevauchement : on met le menu sous le nom */
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      top: 42px;
+    }
+
+    .nav-links {
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+    }
+
+    /* On descend le texte principal pour que le menu ne le cache pas */
+    header {
+      padding: 12rem 1.2rem 5rem;
+    }
+
+    /* Le reste du code mobile */
+    .lang-bar { padding: 0.75rem 1.2rem; }
     section { padding: 4rem 1.2rem; }
     .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
     .expertise-grid { grid-template-columns: 1fr; }
