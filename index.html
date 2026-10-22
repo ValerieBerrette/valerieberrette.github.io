@@ -1386,9 +1386,15 @@
 function handleSubmit(event) {
   if (event) event.preventDefault();
   
-  const form = document.querySelector('form') || event?.target;
-  const formData = new FormData(form);
+  // Cette ligne force la sélection de votre bloc de contact
+  const form = document.getElementById("contact") || document.querySelector('form');
+  const formData = new FormData();
 
+  // On récupère manuellement vos champs de saisie pour être 100% sûr
+  const inputs = form.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    if (input.name) formData.append(input.name, input.value);
+  });
   fetch("https://formsubmit.co/ajax/valerie.berrette.pro@gmail.com", {
     method: "POST",
     body: formData
