@@ -1383,9 +1383,25 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-  function handleSubmit() {
-    document.getElementById("form-note").style.display = "block";
-  }
-</script>
+function handleSubmit(event) {
+  if (event) event.preventDefault();
+  
+  const form = document.querySelector('form') || event?.target;
+  const formData = new FormData(form);
+
+  fetch("https://formsubmit.co/ajax/valerie.berrette.pro@gmail.com", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      document.getElementById("form-note").style.display = "block";
+      if(form) form.reset();
+    } else {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  })
+  .catch(error => alert("Erreur de connexion. Veuillez réessayer."));
+}</script>
 </body>
 </html>
