@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -750,6 +750,8 @@
     position: relative;
     z-index: 1;
     max-width: 780px;
+    margin: 0 auto;
+  text-align: center;
   }
 
   .hero-eyebrow {
@@ -774,17 +776,17 @@
   h1 em { font-style: italic; color: var(--accent); }
 
   .hero-sub {
-    font-size: 17px;
-    font-weight: 300;
-    color: var(--ink-soft);
-    max-width: 560px;
-    line-height: 1.8;
-    margin-bottom: 3rem;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  max-width: 560px;
+  line-height: 1.8;
+  margin: 0 auto 3rem auto;
   }
-
   .hero-actions {
     display: flex;
     align-items: center;
+   justify-content: center; 
     gap: 2.5rem;
   }
 
@@ -923,9 +925,10 @@
 
 <!-- LANGUAGE TOGGLE -->
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
 </div>
+
 
 <!-- NAV -->
 <nav>
@@ -1336,7 +1339,7 @@
 
 <script>
   // LANG SYSTEM
-  let currentLang = 'fr';
+  let currentLang = 'en';
 
   function setLang(lang) {
     currentLang = lang;
@@ -1350,7 +1353,7 @@
     });
     document.documentElement.lang = lang;
   }
-
+setLang('en');
   // CARROUSEL
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel-slide');
@@ -1415,7 +1418,7 @@ function handleSubmit() {
       throw new Error("send failed");
     }
   })
-  .catch(() => alert(currentLang === "en" ? "Une erreur est survenue. Veuillez réessayer." : "An error occurred. Please try again."));
+  .catch(() => alert(currentLang === "fr" ? "Une erreur est survenue. Veuillez réessayer." : "An error occurred. Please try again."));
 }
 </script>
 </body>
